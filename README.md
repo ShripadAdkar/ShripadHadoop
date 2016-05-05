@@ -1,0 +1,2 @@
+# ShripadHadoop
+Hadoop and MapReduce 
