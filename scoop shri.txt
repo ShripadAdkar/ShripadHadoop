@@ -1,0 +1,72 @@
+sqoop import --connect jdbc:mysql://localhost:3306/school --table student --username root --password password --target-dir /27_student -m 1
+
+****m 1 is 1 mapper Bydefault 4 mappers******
+
+
+4.hadoop fs -copyToLocal /27_student /home/admin1/Desktop/cl_student/
+
+
+$sqoop import 
+--connect jdbc:mysql://localhost:3306/school 
+--username root --password password \
+--query 'select * from student where roll_no > 3 AND $CONDITIONS' 
+--target-dir /student_cl_1 -m 1
+
+
+
+
+
+edit and run this one
+
+$sqoop import --connect jdbc:mysql://localhost:3306/school --username root --password password \
+   			--query 'select * from student where roll_no > 3 AND $CONDITIONS' --target-dir /27_student_query -m 1
+
+
+mysql>create table student_export_new like cl_student;
+edit ->   create table student_export_new like student;
+create table
+my sql> desc student_export_new;
+
+will describe
+
+
+export now
+
+HDFS 
+edit final file name
+sqoop export --connect jdbc:mysql://localhost:3306/school --username root --password password --table student_export_new --export-
+dir /27_student
+
+
+to export 2 records
+
+select * from student_export_new order by roll_no;
+
+
+2nd-applesales 
+
+**do all that done with above student example
+hdfs**
+hadoop fs -copyFromLocal /home/admin1/Desktop/product_cl/ /apple_sales
+
+hadoop fs -copyFromLocal /home/admin1/Desktop/apple_sales/ /apple_sales
+***export command
+
+sqoop export --connect jdbc:mysql://localhost:3306/school --username root --password password --table apple_sales --export-dir /apple_sales
+
+mysql>select * from apple_sales;
+
+HW Olympic data
+
+then 
+Sqoop file
+
+sqoop.export.records.per.statement		//specifies the number of records that will be used in each insert statement
+   sqoop.export.statements.per.transaction	//specifies how many insert statements can be processed parallel during a transaction
+
+
+above are important steps
+
+CREATE TABLE olympic (NAME VARCHAR(100), COUNTRY VARCHAR(80), YEAR INT, SPORTS VARCHAR(100), WIN INT, DRAW INT, LOST INT, TOTAL INT);
+show tables;
+
